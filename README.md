@@ -1,5 +1,5 @@
 # Spatial Data Merge
-This repository contains community context data (2017-2022) for the Everday Respect project, and the code needed to merge these data at the reporting district level. Where applicable, artifacts representing the analyses outputs are included.
+This repository contains community context data (2017-2022) for the Everday Respect project, and the code needed to merge these data at the reporting district level. Where applicable, artifacts representing the analyses outputs are included. A data dictionary is available for future analysis and use on Airtable (ask team member for access) and statically here: [`LAPD Data Dictionary.xlsx`](LAPD_Data_Dictionary.xlsx)
 
 
 ## Getting started
@@ -22,7 +22,7 @@ We used an area-weighted average approach to aggregate demographic and income va
 
 Vintages for 2017, 2018, 2019, 2020, 2021, and 2022 were used for both ACS datasets.
 
-We performed a spatial overlay using the [Geopandas library](https://geopandas.org/en/stable/docs.html) to identify and calculate the intersecting areas between census tracts and reporting districts.
+We performed a spatial overlay using the [Geopandas library](https://geopandas.org/en/stable/docs.html) to identify and calculate the intersecting areas between census tracts and reporting districts. A look-up table of the census tracts to reporting districts is available for future merges: [`CT_to_RD_lookup.csv`](./output/CT_to_RD_lookup.csv). A visual depiction of the intersection is also produced: [`CT_to_RD_merge.png`](./output/CT_to_RD_merge.png).
 
 We calculated weighted averages for each year for each variable based on the area of each census tract within the reporting district. The (area-weighted averaged) variables for each reporting district include:
 - Median Household Income (Dollars)
