@@ -9,7 +9,7 @@ Unzip all files in the directory [`data`](./data/) and any subfolders. These fil
 
 ## Running analysis
 
-To run the code, Jupyter Notebook and Python are required. All code is contained within the Jupyter Notebook file [`spatial_merge.ipynb`](spatial_merge.ipynb) organized with headings and sub-headings. To run this file, install all package requirements (under `Imports`) using pip or your preferred package installer. You may need to restart the kernel to access the packages. 
+To run the code, Jupyter Notebook and Python are required. All code is contained within the Jupyter Notebook file [`spatial_merge.ipynb`](spatial_merge.ipynb) organized with headings and sub-headings. To run this file, install all package requirements (under `Imports`) using [pip](https://pypi.org/project/pip/) or your preferred package installer. You may need to restart the kernel to access the packages. 
 
 No other modifications are required to run the script. 
 
@@ -20,7 +20,7 @@ We used an area-weighted average approach to aggregate demographic and income va
 - American Community Survey (ACS) Table B03002 (5-year estimates for race and ethnicity)
 - American Community Survey (ACS) Table S1901 (5-year estimates of household income)
 
-Vintages for 2017, 2018, 2019, 2020, 2021, and 2022 were used for both ACS datasets.
+Vintages for 2017, 2018, 2019, 2020, 2021, and 2022 were used for both ACS datasets. See [data dictionary](LAPD_Data_Dictionary.xlsx) for more details.
 
 We performed a spatial overlay using the [Geopandas library](https://geopandas.org/en/stable/docs.html) to identify and calculate the intersecting areas between census tracts and reporting districts. A look-up table of the census tracts to reporting districts is available for future merges: [`CT_to_RD_lookup.csv`](./output/CT_to_RD_lookup.csv). A visual depiction of the intersection is also produced: [`CT_to_RD_merge.png`](./output/CT_to_RD_merge.png).
 
