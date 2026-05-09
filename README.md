@@ -44,3 +44,15 @@ This was for two reasons:
 2. To capture the data at the finest temporal resolution (dates) since merging with the community context variables would require rolling up to the year level.
 
 The data can be matched on `Reporting_District_ID` since that column name is consistent across both files. 
+
+## 05/09/2026 Update: Division-level demographic context
+
+A parallel pipeline was developed to aggregate race and population data from the census tract to the LAPD division level, contained in [`racial_spatial_merge.py`](racial_spatial_merge.py). LAPD divisions are a higher-level administrative geography, where 21 divisions cover the city, each composed of multiple reporting districts.
+
+The only new data source introduced is the LAPD Divisions shapefile ([LA City GeoHub](https://geohub.lacity.org/datasets/lapd-divisions)), stored at `data/LAPD_Division_-8371726096393184647.geojson`. All ACS race data (Table B03002, vintages 2017–2022) is drawn from the same `data/ACSDT5Y2017-2022.B03002/` folder used in the original pipeline.
+
+Rather than area-weighted averages, this pipeline uses areal interpolation. For each census tract-division intersection, raw population counts are scaled by the fraction of the census tract's area that falls within the division. These estimated counts are summed to the division level before percentages are computed, ensuring race shares are derived from division-level population totals rather than averaged across tracts.
+
+Intersection pairs with area weights below 0.001 were excluded prior to interpolation (241 unique tract-division pairs distributed evenly across all 21 divisions), as these represent geometric boundary noise rather than meaningful overlap.
+
+The output file [`division_race_variables.csv`](./output/division_race_variables.csv) is a panel dataset indexed by `Division_ID` and `Year` containing estimated population counts and race shares for each division. The data can be matched to other division-level files on `Division_ID`.
